@@ -34,3 +34,31 @@ The application must have three endpoints:
 - what is the capacity of my service? How much can it handle/scale?
 - service should be observable
 - every decision made regarding the design of the service or the technologies may be questioned later
+
+
+
+## Solution
+- Technologies used: Java 17, Spring Webflux with Reactor, and H2 in memory database
+- Application will run on localhost:9000/
+
+#### Application End Points:
+- **POST /shorten/** - to shorten a given URL - request example bellow
+`````bash    
+curl --request POST \
+    --url http://localhost:9000/shorten/ \
+    --header 'Content-Type: application/json' \
+    --data '{
+    "originalUrl": "https://www.linkedin.com/in/ikramamunawar/"
+    }'
+`````
+
+- **GET /original/** - to get the original version of the URL, given its shortened version
+`````bash    
+curl --request GET \
+  --url http://localhost:9000/original/?shortUrl=https://myservicedomain.de/fL1tbD
+`````
+
+- **GET /redirect/** - to evaluate and redirect the user to the original URL, given the shortened version
+`````bash    
+curl --request GET \
+  --url http://localhost:9000/redirect/?shortUrl=https://myservicedomain.de/fL1tbD
