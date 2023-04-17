@@ -1,2 +1,5 @@
 server:
   port: 9000
+spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///url-shortener-db
